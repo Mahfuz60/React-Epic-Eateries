@@ -1,4 +1,4 @@
-import { Button } from 'react-bootstrap';
+import { Button, Col, Container, Row } from 'react-bootstrap';
 import React, { useContext, useState } from 'react';
 import { Card } from 'react-bootstrap';
 import Appbar from '../../HomePage/Appbar/Appbar';
@@ -14,7 +14,6 @@ const OrderedFood = () => {
     const order = fakeData.find(food => food.foodName === foodName)
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    // const [orderedFood, setOrderedFood] = useState([])
 
     const confirm = () => {
         const swalWithBootstrapButtons = Swal.mixin({
@@ -58,42 +57,48 @@ const OrderedFood = () => {
     return (
         <div>
             <Appbar></Appbar>
-            <div className="row d-flex  m-5 p-5">
-                <div className="col-md-6" >
-                    <div style={{ marginTop: "100px" }}>
-                        <Card>
-                            <Card.Img variant="top" src={order && order.image} />
-                            <Card.Body>
-                                <Card.Title>Food Name : {order && order.foodName}</Card.Title>
-                                <Card.Text>
-                                    Some quick example text to build on the card title and make up the bulk of
-                                    the card's content.
+            <Container id="Contact" className=" mt-5 mb-5 pb-5" fluid>
+                <Row className=" mt-5">
+                    <Col md={6}>
+                        <div style={{ marginTop: "100px" }}>
+                            <Card className="w-100">
+                                <Card.Img variant="top" src={order && order.image} />
+                                <Card.Body>
+                                    <Card.Title>Food Name : {order && order.foodName}</Card.Title>
+                                    <Card.Text>
+                                        Some quick example text to build on the card title and make up the bulk of
+                                        the card's content.
                                 </Card.Text>
-                                <Card.Title>Food Price : {order && order.price} $</Card.Title>
-                            </Card.Body>
-                        </Card>
-                    </div>
-                </div>
-                <div className="col-md-6" >
-                    <div style={{ marginTop: "100px" }} id="booking-area" className="booking-form ">
-                        <div className="input-group">
-                            <label for="">Pick From</label>
-                            <input className="inp-style" type="text" name="" placeholder="Mirpur" />
+                                    <Card.Title>Food Price : {order && order.price} $</Card.Title>
+                                </Card.Body>
+                            </Card>
                         </div>
-                        <div className="input-group">
-                            <label for="">Pick To</label>
-                            <input className="inp-style" type="text" name="" placeholder="Dhanmondi" />
-                        </div>
-                        <div className="inputs">
+                    </Col>
+                    <Col md={6} >
+                        <div style={{ marginTop: "100px" }} id="booking-area" className="booking-form ">
                             <div className="input-group">
-                                <label for="">Booking Date</label>
-                                <input className="inp-style" type="date" name="" />
+                                <label for="">Your Name</label>
+                                <input className="inp-style" type="text" name="" placeholder="Write Your Name" />
                             </div>
+                            <div className="input-group">
+                                <label for="">Your Phone Number</label>
+                                <input className="inp-style" type="text" name="" placeholder="Write Your Phone Number" />
+                            </div>
+                            <div className="input-group">
+                                <label for="">Delivered Location</label>
+                                <input className="inp-style" type="text" name="" placeholder="Write Your Location" />
+                            </div>
+                            <div className="inputs">
+                                <div className="input-group">
+                                    <label for="">Order Date</label>
+                                    <input className="inp-style" type="date" name="" />
+                                </div>
+                            </div>
+                            <Button onClick={confirm} variant="secondary">Confirm Order</Button>
                         </div>
-                        <Button onClick={confirm} variant="secondary">Confirm Order</Button>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </div>
     );
 };
